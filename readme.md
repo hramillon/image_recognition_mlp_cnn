@@ -17,8 +17,6 @@ We start from the fundamentals and progressively increase complexity:
 
 Each step teaches us something new about how neural networks learn from data.
 
----
-
 ## Binary classifier and basics of Deep Learning
 
 ### Perceptrons
@@ -38,13 +36,7 @@ To explain what is happening inside this perceptron, we divide the explanation i
 2. The weights form a vector with the same dimension as the input (784).  
    They are used to determine whether our image represents a zero or not, together with the bias, using the following function:
 
-   $$
-   f(x) =
-   \begin{cases}
-   1 & \text{if } b + w \cdot x > 0 \\
-   0 & \text{otherwise}
-   \end{cases}
-   $$
+   $$f(x) =\begin{cases}1 & \text{if } b + w \cdot x > 0 \\0 & \text{otherwise}\end{cases}$$
 
    where:
    - $w$ is the weight vector  
@@ -54,9 +46,7 @@ To explain what is happening inside this perceptron, we divide the explanation i
 3. Finally, we have an activation function.  
    The goal of this function is to “de-linearize” the output, which we will see later, and to normalize the output between 0 and 1 in the case of the sigmoid function. The function then becomes:
 
-   $$
-   f(x) = \phi(b + w \cdot x)
-   $$
+   $$f(x) = \phi(b + w \cdot x)$$
 
    In this case, it is not strictly necessary, but it is a general and very important concept for the following parts.
 
@@ -78,12 +68,8 @@ Invented in 1957 by F. Rosenblatt, the goal of the perceptron algorithm is to tr
    - For each example $(x, a)$:
      - If $a - f(x) = 0$: continue  
      - Else, for each weight $w_i$:
-       $$
-       \Delta w_i = (a - f(x)) \cdot x_i
-       $$
-       $$
-       w_i := w_i + \Delta w_i
-       $$
+       $$\Delta w_i = (a - f(x)) \cdot x_i$$
+       $$w_i := w_i + \Delta w_i$$
    - If there are no errors: converged, stop  
 
 Where:
@@ -134,17 +120,13 @@ For example, if the output is `[0.01, 0.98, 0.05, ...]`, the model predicts digi
 
 **Softmax** converts raw scores into probabilities:
 
-$$
-\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}
-$$
+$$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}$$
 
 This ensures that all outputs sum to 1 and lie between 0 and 1.
 
 **Cross-entropy loss** measures how far these probabilities are from the true label:
 
-$$
-L = -\sum_{i=1}^{10} y_i \log(\hat{y}_i)
-$$
+$$L = -\sum_{i=1}^{10} y_i \log(\hat{y}_i)$$
 
 Where:
 - $y_i$ is the true label  
@@ -158,9 +140,7 @@ Softmax and cross-entropy are smooth and differentiable, making them well-suited
 
 To improve the model, we adjust parameters in the direction that reduces the loss:
 
-$$
-\Delta \Phi_i = - \eta \frac{\partial L}{\partial \Phi_i}
-$$
+$$\Delta \Phi_i = - \eta \frac{\partial L}{\partial \Phi_i}$$
 
 Where:
 - $\Phi_i$ is a parameter (weight or bias)  
@@ -209,9 +189,7 @@ Multiple linear transformations collapse into a single linear transformation.
 
 **Rumelhart’s solution (1986)**: introduce non-linear activation functions.
 
-$$
-\text{Output} = \sigma(W \cdot \text{Input} + b)
-$$
+$$\text{Output} = \sigma(W \cdot \text{Input} + b)$$
 
 This is what makes deep learning possible.
 
@@ -275,9 +253,7 @@ This representation can quickly become memory-intensive, which is why pooling is
 
 The exact convolution equation is:
 
-$$
-Z[i,j] = \sum_{u,v} F[u,v] \cdot X[i+u,j+v] + b
-$$
+$$Z[i,j] = \sum_{u,v} F[u,v] \cdot X[i+u,j+v] + b$$
 
 Where:
 - $Z[i,j]$ is the output value at position $(i, j)$  
@@ -384,9 +360,7 @@ The accuracy is **58.35%**, which is clearly insufficient. Several reasons expla
 **SGD (Stochastic Gradient Descent)**  
 SGD updates parameters using a constant learning rate. It is simple but slow and can get stuck in local minima.
 
-$$
-w := w - \eta \frac{\partial L}{\partial w}
-$$
+$$w := w - \eta \frac{\partial L}{\partial w}$$
 
 **Adam (Adaptive Moment Estimation)**  
 Adam combines:
@@ -395,7 +369,7 @@ Adam combines:
 
 ### Second Model
 
-```
+'''
 Input (32×32×3)
   ↓
 Conv2D(32, 3×3) + ReLU, padding='same'
@@ -423,7 +397,7 @@ Dense(256) + ReLU
 Dense(10) + Softmax
   ↓
 Output (10 classes)
-```
+'''
 
 #### Performance Results
 
