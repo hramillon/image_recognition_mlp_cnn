@@ -285,7 +285,7 @@ We built the following CNN model, which shows no signs of overfitting and achiev
 
 #### Model Architecture
 
-'''
+```
 Input (784 pixels)
 ↓
 Reshape → (28×28×1)
@@ -305,7 +305,7 @@ Dense(128) + ReLU
 Dense(10) + Softmax
 ↓
 Output (10 classes)
-'''
+```
 
 - Two convolutional layers learn increasingly complex patterns  
 - MaxPooling reduces spatial dimensions while preserving important features  
@@ -369,7 +369,7 @@ Adam combines:
 
 ### Second Model
 
-'''
+```
 Input (32×32×3)
   ↓
 Conv2D(32, 3×3) + ReLU, padding='same'
@@ -397,7 +397,7 @@ Dense(256) + ReLU
 Dense(10) + Softmax
   ↓
 Output (10 classes)
-'''
+```
 
 #### Performance Results
 
@@ -444,7 +444,7 @@ These modifications aim to address both:
 
 ### Third Model
 
-'''
+```
 Input (32×32×3)
   ↓
 Conv2D(64, 3×3) + ReLU, padding='same'
@@ -472,8 +472,7 @@ Dropout(0.5)
 Dense(10) + Softmax
   ↓
 Output (10 classes)
-'''
-
+```
 
 Our third model iteration achieved **72% validation accuracy**. This is lower than the previous model, but:
 
