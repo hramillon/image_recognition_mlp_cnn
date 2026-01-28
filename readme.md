@@ -36,9 +36,14 @@ To explain what is happening inside this perceptron, we divide the explanation i
 2. The weights form a vector with the same dimension as the input (784).  
    They are used to determine whether our image represents a zero or not, together with the bias, using the following function:
 
-   $$
-   f(x) = \begin{cases}1 & \text{if } b + w \cdot x > 0 \\0 & \text{otherwise}\end{cases}
-   $$
+$$
+f(x) =
+\begin{cases}
+1, & \text{if } b + w \cdot x > 0 \\
+0, & \text{otherwise}
+\end{cases}
+$$
+
 
    where:
    - $w$ is the weight vector  
@@ -63,7 +68,7 @@ This corresponds to one layer with one perceptron, 784 inputs, and a sigmoid act
 
 ### Perceptron’s Algorithm
 
-Invented in 1957 by F. Rosenblatt, the goal of the perceptron algorithm is to train the perceptron to find the best weights for our problem.
+Invented in 1957 by F. Rosenblatt (1), the goal of the perceptron algorithm is to train the perceptron to find the best weights for our problem.
 
 1. Initialize weights and bias to 0  
 2. For N iterations or until convergence:
@@ -80,6 +85,8 @@ Where:
 
 
 ### Results and Criticism
+
+python code available in *binary_classifier.py* the model in $models/binary_classifier.keras$
 
 We obtained a success rate of **99.19%**.  
 However, since only 10% of the images in the test set are zeros, we can identify a form of bias in this result.
@@ -149,6 +156,8 @@ This works because the loss function is differentiable, allowing gradients to be
 
 ### Results and Criticism
 
+code in python available in *mlp.py* and model in *models/mlp.keras*.
+
 After 10 epochs, we obtain 92% accuracy.  
 Even though this may seem high, it is quite poor for such a simple task. Let’s try to improve it.
 
@@ -180,7 +189,7 @@ Before 1986, stacking layers did not help much because without activation functi
 
 Multiple linear transformations collapse into a single linear transformation.
 
-**Rumelhart’s solution (1986)**: introduce non-linear activation functions.
+Rumelhart’s solution (1986) (2): introduce non-linear activation functions.
 
 $$
 \text{Output} = \sigma(W \cdot \text{Input} + b)
@@ -189,6 +198,8 @@ $$
 This is what makes deep learning possible.
 
 ### Results and Criticism: Overfitting
+
+code in python available in *mlp2.py* and model in *models/mlp2.keras*.
 
 After 10 epochs, accuracy increases from 92% to 98%, which is very encouraging.
 
@@ -204,9 +215,9 @@ This is actually good news for the cat recognition task:
 
 ## Convolutional Neural Network (CNN): a way to recognize the world like our brain
 
-Based on the research of biologists David H. Hubel and Torsten Wiesel (1958–1959), it was discovered how the visual cortex of cats processes and decodes complex patterns through hierarchical layers of neurons.
+Based on the research of biologists David H. Hubel and Torsten Wiesel (1958–1959) (3), it was discovered how the visual cortex of cats processes and decodes complex patterns through hierarchical layers of neurons.
 
-This biological insight inspired Yann LeCun, who in 1990 applied these principles to create the first Convolutional Neural Networks (CNNs). Later, the famous LeNet-5 architecture (1998) proved that CNNs could effectively recognize handwritten digits.
+This biological insight inspired Yann LeCun, who in 1990 (4) applied these principles to create the first Convolutional Neural Networks (CNNs). Later, the famous LeNet-5 architecture (1998) proved that CNNs could effectively recognize handwritten digits.
 
 We now understand the brain’s approach to vision let’s see how it works:
 
@@ -271,6 +282,8 @@ This results in significant information reduction, but greatly improves computat
 Pooling works because the maximum value often represents the most relevant feature in a local region. It also helps reduce overfitting by forcing the network to focus on dominant patterns rather than precise locations.
 
 ### Results
+
+code in python available in *cnn.py* and model in *models/cnn.keras*.
 
 We built the following CNN model, which shows no signs of overfitting and achieves over 99% accuracy:
 
@@ -466,10 +479,11 @@ Dense(10) + Softmax
   ↓
 Output (10 classes)
 ```
+*(To do this model representation I gave my keras model to Claude)*
 
 Our third model iteration achieved **86% validation accuracy**.
 
-![Model Performance, third model, on CIFAR-10](ressources/cifar10_results.png)
+![Model Performance, third model, on CIFAR-10](ressources/finalmodel.png)
 
 Now the question is, How do we successfully circumvent high overfitting and at the same time increased consequently the size of our model ?
 
@@ -514,14 +528,31 @@ I resized a photo of my cat to **32×32** pixels:
 
 <img src="ressources/catsquare2.jpg" width="300" alt="My cat Romeo">
 
-I tested our model on different cats of my friends to be sure that the model is able to recognize other thing that the CIFAR10 representations
+I tested our model on different cats*(To do this model representation I gave my keras model to Claude)* of my friends to be sure that the model is able to recognize other thing that the CIFAR10 representations
 
-![Romeo classified by model 3](ressources/catCertified.png)
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <img src="ressources/romeoC.png" width="30%">
+  <img src="ressources/anakinC.png" width="30%">
+  <img src="ressources/anakin2C.png" width="30%">
+</div>
 
 It's a success. all our cats are recognized as cat
 
-*catsquare.jpg*
-*anakin.jpg*
-*anakiin2.jpg* harder
+- *catsquare.jpg*
+- *anakin.jpg*
+- *anakiin2.jpg* harder
 
 ## Bibliographie
+
+### Manuals
+
+- Géron, A. *Machine Learning avec Scikit-Learn*. Dunod.
+- Charniak, E. *Introduction au Deep Learning*. Dunod.
+- Géron, A. *Deep Learning avec TensorFlow*. Dunod.
+
+### Articles
+
+- (1) Rosenblatt, F. (1958). *The perceptron: A probabilistic model for information storage and organization in the brain*
+- (2) D.Rumelhart, G.Hinton and R.Williams (1986) *Learning Internal Representations by Error Propagation*
+- (3) D.Hubel and T.Wiesel (1958-1959) *Single Unit Acrivity in Striate Cortex of Unrestrained Cats*, http://goo.gl/VLxXf9
+- (4) Y.LeCun,(1998), *Gradient-Based Learning Applied to document Recognition*, http://goo.gl/A347S4
