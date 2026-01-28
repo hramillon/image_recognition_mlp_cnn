@@ -68,30 +68,3 @@ print(f"\nTest Accuracy: {test_accuracy:.4f}")
 print(f"Test Loss: {test_loss:.4f}")
 
 model.save('models/cat1_like_mnist.keras')
-
-# Plot training history
-
-plt.figure(figsize=(12, 5))
-
-plt.subplot(1, 2, 1)
-plt.plot(history.history['loss'], label='Training Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.title('CIFAR-10 Training Loss')
-plt.legend()
-plt.grid()
-
-plt.subplot(1, 2, 2)
-plt.plot(history.history['accuracy'], label='Training Accuracy')
-plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.title('CIFAR-10 Training Accuracy')
-plt.legend()
-plt.grid()
-
-plt.tight_layout()
-plt.savefig('images/cifar10_results.png')
-print("Results plot saved to images/cifar10_results.png")
-plt.show()

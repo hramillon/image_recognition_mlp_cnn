@@ -34,7 +34,7 @@ model = keras.Sequential([
 
 
 
-# Compiler le modèle
+# Compiler le modèle avec cross enrtro
 model.compile(
     optimizer=keras.optimizers.SGD(learning_rate=0.5),
     loss='categorical_crossentropy',

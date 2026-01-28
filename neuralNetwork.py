@@ -14,7 +14,7 @@ x_test = x_test.reshape(-1, 784).astype('float32') / 255.0
 y_train = keras.utils.to_categorical(y_train, 10)
 y_test = keras.utils.to_categorical(y_test, 10)
 
-# Créer le modèle avec 10 neuronnes, softmax et 784 entrées (pixels image)
+# Créer le modèle avec 10 neuronnes, softmax et 784 entrées (dû aux pixels image)
 model = keras.Sequential([
     keras.layers.Dense(10, activation='softmax', input_shape=(784,))
 ])

@@ -15,7 +15,6 @@ x_test_zeros = x_test[zeros_mask]
 print(f"Total images in test set: {len(x_test)}")
 print(f"Images that are 0: {len(x_test_zeros)}")
 print(f"Percentage of 0s: {len(x_test_zeros) / len(x_test) * 100:.2f}%")
-print()
 
 predictions = model.predict(x_test_zeros)
 predictions_binary = (predictions > 0.5).astype(int).flatten()
@@ -27,7 +26,6 @@ accuracy_on_zeros = np.mean(predictions_binary == expected)
 print(f"Accuracy on ZEROS ONLY: {accuracy_on_zeros * 100:.2f}%")
 print(f"Correct predictions: {np.sum(predictions_binary == expected)} / {len(x_test_zeros)}")
 print(f"Wrong predictions: {np.sum(predictions_binary != expected)}")
-print()
 
 mean_confidence_zeros = np.mean(predictions[predictions_binary == 1])
 mean_confidence_wrong = np.mean(predictions[predictions_binary == 0])
