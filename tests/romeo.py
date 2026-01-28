@@ -19,7 +19,7 @@ img_array = np.array(img).astype('float32') / 255.0
 img_input = np.expand_dims(img_array, axis=0)
 
 # Try both models
-models = ['../models/cat2.keras', '../models/cat3.keras']
+models = ['../models/cat4.keras', '../models/cat3.keras']
 
 for model_path in models:
     try:

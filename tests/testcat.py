@@ -21,7 +21,7 @@ print(f"Test set shape: {x_test.shape}")
 print(f"Number of test images: {len(x_test)}")
 
 # Load the model
-model = keras.models.load_model('../models/cat3.keras')
+model = keras.models.load_model('../models/cat4.keras')
 print("\nModel loaded successfully!")
 
 # Evaluate on test set
